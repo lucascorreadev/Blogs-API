@@ -17,11 +17,5 @@
         tableName: 'blog_posts'
     });
 
-    BlogPost.associate = (models) => {
-        BlogPost.hasOne(models.User, {
-            foreignKey: 'user_id', as: 'id'
-        })
-    }
-
     return BlogPost;
 }
