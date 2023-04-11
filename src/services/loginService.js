@@ -19,8 +19,6 @@ const authenticate = async (email, password) => {
         where: { password },
     });
 
-    console.log(user);
-
     if (!verifyPassword) throw errorRequired;
     if (!user || user.password !== password) {
         throw errorInvalid;
