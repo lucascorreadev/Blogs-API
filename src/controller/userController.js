@@ -9,6 +9,12 @@ const register = async (req, res) => {
     }
 };
 
+const findAllUsers = async (req, res) => {
+    const user = await userService.findAllUsers();
+    return res.status(200).json(user);
+};
+
 module.exports = {
     register,
+    findAllUsers,
 };

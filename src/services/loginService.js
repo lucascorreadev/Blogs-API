@@ -1,14 +1,6 @@
 const { User } = require('../models');
-
-const generateToken = require('../utils/auth');
-
-const errorRequired = {
-    message: 'Some required fields are missing',
-  };
-
-const errorInvalid = {
-    message: 'Invalid fields',
-  };
+const { generateToken } = require('../utils/auth');
+const error = require('../utils/errors');
 
 const authenticate = async (email, password) => {
     const user = await User.findOne({
@@ -19,10 +11,9 @@ const authenticate = async (email, password) => {
         where: { password },
     });
 
-    if (!verifyPassword) throw errorRequired;
-    if (!user || user.password !== password) {
-        throw errorInvalid;
-      }
+    if (!verifyPassword) throw error(400, 'Some required fields are missing');
+
+    if (!user || user.password !== password) throw error(400, 'Invalid fields');
 
     const token = generateToken(user.dataValues);
 
