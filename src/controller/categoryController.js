@@ -10,6 +10,12 @@ const insert = async (req, res) => {
 }
 };
 
+const getAll = async (req, res) => {
+    const categories = await categoryService.getAll();
+    return res.status(200).json(categories);
+};
+
 module.exports = {
     insert,
+    getAll,
 };
