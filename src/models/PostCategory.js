@@ -18,14 +18,14 @@
 
     PostCategory.associate = (models) => {
         models.BlogPost.belongsToMany(models.Category, {
-            as: 'postId',
+            as: 'categories',
             through: PostCategory,
             foreignKey: 'postId',
             otherKey: 'categoryId',
         })
 
         models.Category.belongsToMany(models.BlogPost, {
-            as: 'categoryId',
+            as: 'blog-posts',
             through: PostCategory,
             foreignKey: 'categoryId',
             otherKey: 'postId',
