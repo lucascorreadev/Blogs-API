@@ -4,5 +4,6 @@ const { userTokenGenerator } = require('../middlewares/userValidator');
 
 blogPostRouter.post('/', blogPostController.insert);
 blogPostRouter.get('/', userTokenGenerator, blogPostController.getAll);
+blogPostRouter.get('/:id', userTokenGenerator, blogPostController.findById);
 
 module.exports = blogPostRouter;
